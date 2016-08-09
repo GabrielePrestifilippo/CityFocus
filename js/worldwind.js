@@ -1,34 +1,62 @@
 var wwd;
 var nav;
-requirejs(['./LayerManager'],
+
+
+define(['./LayerManager','src/WorldWind'],
     function (LayerManager) {
-        "use strict";
 
-        WorldWind.Logger.setLoggingLevel(WorldWind.Logger.LEVEL_WARNING);
+        var worldwind = function () {
+        var self=this;
+            wwd = new WorldWind.WorldWindow("canvasOne");
 
-        wwd = new WorldWind.WorldWindow("canvasOne");
+            var layers = [
 
-        var layers = [
 
-            {layer: new WorldWind.BingRoadsLayer(null), enabled: true},
-            {layer: new WorldWind.OpenStreetMapImageLayer(null), enabled: false},
-            {layer: new WorldWind.CompassLayer(), enabled: true},
-            {layer: new WorldWind.CoordinatesDisplayLayer(wwd), enabled: true},
-            {layer: new WorldWind.ViewControlsLayer(wwd), enabled: true}
-        ];
+                {layer: new WorldWind.ViewControlsLayer(wwd), enabled: true}
+            ];
 
-        for (var l = 0; l < layers.length; l++) {
-            layers[l].layer.enabled = layers[l].enabled;
-            wwd.addLayer(layers[l].layer);
-        }
+            for (var l = 0; l < layers.length; l++) {
+                layers[l].layer.enabled = layers[l].enabled;
+                wwd.addLayer(layers[l].layer);
+            }
 
-        // Create a layer manager for controlling layer visibility.
-        var layerManger = new LayerManager(wwd);
+            // Create a layer manager for controlling layer visibility.
+            this.layerManager= new LayerManager(wwd);
 
-        wwd.navigator.lookAtLocation.latitude= 45.466;
-        wwd.navigator.lookAtLocation.longitude = 9.1822;
-        wwd.navigator.range = 35000;
-        wwd.layers[0].detailControl=0.6;
-        layerManger.flat();
+
+            wwd.navigator.lookAtLocation.latitude = 45.466;
+            wwd.navigator.lookAtLocation.longitude = 9.1822;
+            wwd.navigator.range = 35000;
+
+            this.layerManager.flat();
+
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://ows.terrestris.de/osm/service?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities", true);
+            request.onreadystatechange = function () {
+                if (request.readyState === 4 && request.status === 200) {
+                    var xmlDom = request.responseXML;
+
+                    if (!xmlDom && request.responseText.indexOf("<?xml") === 0) {
+                        xmlDom = new window.DOMParser().parseFromString(request.responseText, "text/xml");
+                    }
+                    var wmsCapsDoc = new WorldWind.WmsCapabilities(xmlDom);
+                    var config = WorldWind.WmsLayer.formLayerConfiguration(wmsCapsDoc, null);
+                    config.title = "OpenStreetMap";
+                    config.layerNames = "OSM-WMS";
+                    var layer = new WorldWind.WmsLayer(config, null);
+                    layer.detailControl = 0.9;
+                    wwd.addLayer(layer);
+                    self.layerManager.synchronizeLayerList();
+
+
+                }
+
+            };
+
+            request.send(null);
+        };
+
+        return worldwind;
 
     });
+

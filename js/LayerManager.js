@@ -126,6 +126,7 @@ define(function () {
         }
     };
 
+
     LayerManager.prototype.synchronizeLayerList = function () {
         var layerListItem = $("#layerList");
 
@@ -133,7 +134,7 @@ define(function () {
         layerListItem.find("button").remove();
 
         // Synchronize the displayed layer list with the World Window's layer list.
-        for (var i = 0, len = this.wwd.layers.length; i < len; i++) {
+        for (var i = 2, len = this.wwd.layers.length; i < len; i++) {
             var layer = this.wwd.layers[i];
             if (layer.hide) {
                 continue;
@@ -184,13 +185,12 @@ define(function () {
 
     LayerManager.prototype.createProjectionList = function () {
         var projectionNames = [
-            "Mercator",
-            "3D",
-
+            "2D",
+            "3D"
         ];
         var projectionDropdown = $("#projectionDropdown");
 
-        var dropdownButton = $('<button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown">Mercator<span class="caret"></span></button>');
+        var dropdownButton = $('<button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown">2D<span class="caret"></span></button>');
         projectionDropdown.append(dropdownButton);
 
         var ulItem = $('<ul class="dropdown-menu">');

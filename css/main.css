@@ -28,9 +28,9 @@ body {
     #2ab0ed 100%);
 }
 
-#top {
+#header {
     width: 100%;
-
+    font-size: 18px;
     text-align: center;
     background-color: #2f90ff;
 }
@@ -51,24 +51,25 @@ body {
 #c_three {
     background-color: #f6f6f6;
     text-align: center;
-    padding-right:0px;
+    padding-right: 0px;
 }
-
 
 #c_four {
     background-color: #f6f6f6;
     text-align: left;
-    padding:30px;
-    padding-right:0px;
+    padding: 30px;
+    padding-right: 0px;
 
 }
 
-#c_five {
+#footer {
     background-color: #3c3c3c;
     text-align: center;
-    padding:30px;
+    padding: 30px;
+    color: #ececec;
 
 }
+
 .container {
     width: 100%;
     display: inline-block;
@@ -81,8 +82,6 @@ body {
     width: 80%;
     line-height: 60px;
 }
-
-
 
 div#intro {
     width: 50%;
@@ -156,6 +155,7 @@ div#intro {
 label {
     float: left;
 }
+
 .ui-widget.ui-widget-content {
     border: none !important;
 }
@@ -267,6 +267,14 @@ a.nav-link:hover {
         float: left;
         display: block !important;
     }
+
+    #leftImages, #rightImages {
+        display: block !important;
+    }
+
+    #centerImage {
+        width: 60% !important;
+    }
 }
 
 .eu {
@@ -281,17 +289,19 @@ a.nav-link:hover {
 
     margin-top: 0px;
 }
-#globe{
 
-    padding-right:0px;
+#globe {
+
+    padding-right: 0px;
 }
 
-.bigCentral{
-    width:100%;
-    text-align:center;
-    margin-top:50px;
+.bigCentral {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
 
 }
+
 .name_result {
     font-size: 24px;
     float: left;
@@ -300,14 +310,60 @@ a.nav-link:hover {
     clear: both;
     width: 20%;
     margin-bottom: 80px;
+    padding: 10px;
 }
-.result_score{
+
+.result_score {
     font-size: 24px;
     float: left;
     font-family: 'Open Sans', sans-serif;
 
 }
+
 div#criteria_selected {
     text-align: left;
     font-size: 20px;
+}
+
+div#centerImage img {
+    width: 60%;
+}
+
+#centerImage {
+    width: 100%;
+    text-align: center;
+    float: left;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: rgba(234, 234, 234, 0.28);
+    height: 70%;
+    border-radius: 10px;
+}
+
+#leftImages {
+    float: left;
+    width: 10%;
+    background-color: rgba(234, 234, 234, 0.28);
+    height: 70%;
+    display: none;
+    border-radius: 10px;
+}
+
+#leftImages img {
+
+    width: 100%;
+}
+
+#rightImages {
+    float: left;
+    width: 10%;
+    background-color: rgba(234, 234, 234, 0.28);
+    height: 70%;
+    display: none;
+    border-radius: 10px;
+}
+
+#rightImages img {
+
+    width: 100%;
 }
