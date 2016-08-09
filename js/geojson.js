@@ -1,23 +1,16 @@
 define(function () {
     "use strict";
     var GeoJson = function (layerManager) {
-        this.layerManager=layerManager;
+        this.layerManager = layerManager;
 
         var layers = [];
         this.layers = layers;
 
-        this.map = {
-            'Narea_cani': [100, 255, 0],
-            'Naree_verdi_clean': [0, 255, 0],
-            'Nwater': [0, 10, 255],
-            'Nparchi': [10, 240, 10],
-            'milano': [10, 240, 10]
-        };
+
     };
 
 
-
-    GeoJson.prototype.add = function (name, label) {
+    GeoJson.prototype.add = function (name, label, active) {
         var self = this;
         var resourcesUrl = "geojson/";
 
@@ -35,36 +28,32 @@ define(function () {
 
             if (geometry.isPointType() || geometry.isMultiPointType()) {
                 configuration.attributes = new WorldWind.PlacemarkAttributes(placemarkAttributes);
-
-                if (properties && (properties.name || properties.Name || properties.NAME)) {
+                /*
+                 if (properties && (properties.name || properties.Name || properties.NAME)) {
                  configuration.name = properties.name || properties.Name || properties.NAME;
                  }
-
+                 */
 
             }
             else if (geometry.isLineStringType() || geometry.isMultiLineStringType()) {
                 configuration.attributes = new WorldWind.ShapeAttributes(null);
                 configuration.attributes.drawOutline = true;
-                var r = self.map[name][0];
-                var g = self.map[name][1];
-                var b = self.map[name][2];
+
                 configuration.attributes.outlineColor = new WorldWind.Color(
-                    r * configuration.attributes.interiorColor.red,
-                    g * configuration.attributes.interiorColor.green,
-                    b * configuration.attributes.interiorColor.blue,
+                    0.5 * configuration.attributes.interiorColor.red,
+                    0.5 * configuration.attributes.interiorColor.green,
+                    0.5 * configuration.attributes.interiorColor.blue,
                     1.0);
-                configuration.attributes.outlineWidth = 1.0;
+                configuration.attributes.outlineWidth = 0.4;
             }
             else if (geometry.isPolygonType() || geometry.isMultiPolygonType()) {
                 configuration.attributes = new WorldWind.ShapeAttributes(null);
-                var r = self.map[name][0];
-                var g = self.map[name][1];
-                var b = self.map[name][2];
+                configuration.attributes.outlineWidth = 0.4;
                 configuration.attributes.interiorColor = new WorldWind.Color(
-                    r,
-                    g,
-                    b,
-                    0.1);
+                    1 + 0.5,
+                    0.375 + 0.5,
+                    0.375 + 0.5,
+                    0.4);
 
                 configuration.attributes.outlineColor = new WorldWind.Color(
                     0.5 * configuration.attributes.interiorColor.red,
@@ -75,31 +64,45 @@ define(function () {
 
             return configuration;
         };
+        try {
 
-        var callback = function () {
-            self.eyeDistance.call(self, polygonLayer);
+            var callback = function () {
+                self.eyeDistance.call(self, polygonLayer);
+            }
+            polygonGeoJSON.load(callback, shapeConfigurationCallback, polygonLayer);
+            active ? true : false;
+            polygonLayer.enabled = active;
+
+        } catch (e) {
+            console.log("No vector available" + e);
         }
-        polygonGeoJSON.load(callback, shapeConfigurationCallback, polygonLayer);
-        wwd.addLayer(polygonLayer);
-        this.layerManager.synchronizeLayerList();
+
     };
 
     GeoJson.prototype.eyeDistance = function (layer) {
-        this.layers.push(layer);
-
-        for (var x in layer.renderables) {
-            var o = layer.renderables[x];
-            o.eyeDistanceScaling = true;
-            o.eyeDistanceScalingThreshold = 10000;
+        if (layer.renderables) {
+            wwd.addLayer(layer);
+            if (layer.displayName !== "Area") {
+                this.layers.push(layer);
+            }
+            for (var x in layer.renderables) {
+                var o = layer.renderables[x];
+                o.eyeDistanceScaling = true;
+                o.eyeDistanceScalingThreshold = 10000;
+            }
+            this.layerManager.synchronizeLayerList();
         }
     };
-
 
     GeoJson.prototype.clean = function () {
-        for (var x in this.layers) {
+        var length = this.layers.length;
+        for (var x = 0; x <= length; x++) {
             wwd.removeLayer(this.layers[x]);
         }
+
         this.layers = [];
+
     };
     return GeoJson;
-});
+})
+;

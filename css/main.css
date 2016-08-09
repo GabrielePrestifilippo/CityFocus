@@ -106,7 +106,7 @@ div#intro {
     text-align: left;
     margin-left: 5%;
     font-size: 28px;
-    width: 90%;
+    width: 98%;
 }
 
 #criteria_name {
@@ -374,12 +374,17 @@ div#centerImage img {
     width: 100%;
 }
 
-
-
-
-
 body {
     background-color: #54a4ff;;
     background-image: url("../bg.jpg");
     background-size: cover;
+}
+
+a:hover, a:focus {
+    color: #23527c;
+    text-decoration: none;
+}
+.infoTooltip{
+    background-color: white !important;
+
 }

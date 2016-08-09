@@ -1,15 +1,14 @@
-define(['js/geojson'],
-    function (GeoJson) {
+define(function () {
         "use strict";
 
-        var results = function (layerManager) {
+        var UserInterface = function (layerManager, geojson) {
             this.layerManager = layerManager;
-            this.geojson = new GeoJson(layerManager);
+            this.geojson=geojson;
 
         };
 
 
-        results.prototype.listeners = function() {
+        UserInterface.prototype.listeners = function() {
             var self=this;
             $(function () {
                 $(".slider").slider({
@@ -78,5 +77,5 @@ define(['js/geojson'],
 
              */
         };
-        return results
+        return UserInterface
     });
