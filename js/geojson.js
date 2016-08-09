@@ -10,7 +10,8 @@ define(function () {
             'Narea_cani': [100, 255, 0],
             'Naree_verdi_clean': [0, 255, 0],
             'Nwater': [0, 10, 255],
-            'Nparchi': [10, 240, 10]
+            'Nparchi': [10, 240, 10],
+            'milano': [10, 240, 10]
         };
     };
 
