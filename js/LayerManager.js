@@ -185,8 +185,8 @@ define(function () {
 
     LayerManager.prototype.createProjectionList = function () {
         var projectionNames = [
-            "2D",
-            "3D"
+            "3D",
+            "2D"
         ];
         var projectionDropdown = $("#projectionDropdown");
 

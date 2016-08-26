@@ -1,13 +1,12 @@
 var wwd;
 var nav;
-
+var accelerateRender=false;
 var layerManager;
 define(['./LayerManager', 'src/WorldWind'],
     function (LayerManager) {
 
         var worldwind = function (results) {
             this.results = results;
-            var self = this;
             wwd = new WorldWind.WorldWindow("canvasOne");
 
             var layers = [

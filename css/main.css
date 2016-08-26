@@ -39,14 +39,19 @@ body {
     background-color: #54a4ff;
     padding: 60px;
     color: white;
-
+    background: url("../bg1.jpg");
 }
 
 #c_one_home {
     background-color: #f8f8f8;
     padding: 60px;
     color: #222;
+}
 
+#c_one_home_app {
+    background-color: #54a4ff;
+    padding: 60px;
+    color: #222;
 }
 
 #c_two {
@@ -141,10 +146,8 @@ div#intro {
 
 .name_slider {
     font-weight: bold;
-    height: 60px;
-    margin: 5px;
+    margin: 20px;
     float: left;
-    font-size: 16px;
 }
 
 .slider .ui-slider-range {
@@ -341,12 +344,11 @@ div#centerImage img {
 }
 
 #centerImage {
-    width: 50%;
+    width: 60%;
     text-align: center;
     float: left;
     margin-left: 5%;
     margin-right: 5%;
-
     height: 70%;
     border-radius: 10px;
 }
@@ -367,11 +369,15 @@ div#centerImage img {
     width: 15%;
     height: 70%;
     border-radius: 10px;
+    position:relative;
 }
 
-#rightImages img {
+#rightImages img, #rightImages a{
 
     width: 100%;
+    bottom: 50%;
+    position: absolute;
+    left:0;
 }
 
 body {
@@ -384,7 +390,19 @@ a:hover, a:focus {
     color: #23527c;
     text-decoration: none;
 }
-.infoTooltip{
-    background-color: white !important;
+.tooltip-inner {
+    background-color: white;
+    color:#222;
+    font-size:20px;
+}
 
+.tooltip-arrow{
+    border-top-color: #fff !important;
+
+}
+#rightImages a{
+    color: white;
+}
+#leftImages a{
+    color: white;
 }
