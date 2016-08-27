@@ -4,7 +4,6 @@ define(function () {
     var UserInterface = function (layerManager, geojson) {
         this.layerManager = layerManager;
         this.geojson = geojson;
-        this.geojson.milano();
         this.map = {};
 
     };
@@ -55,7 +54,32 @@ define(function () {
 
             });
 
-            var query = 'for c in (Natms_200) return encode(c*100, "csv")';
+
+            allValues = [['Ncafe_200', 50], ['Natms_200', 50], ['Nhigh_schools_200', 80]];
+            var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'];
+            var query = 'for';
+            for (var x = 0; x < allValues.length; x++) {
+                query += ' ' + letters[x] + ' in (' + allValues[x][0] + ')';
+                if (x < allValues.length - 1) {
+                    query += ',';
+                }
+            }
+            query += ' return encode( ( (';
+            var sum = 0;
+            for (var x = 0; x < allValues.length; x++) {
+                query += letters[x] + '*' + allValues[x][1];
+                sum += allValues[x][1];
+                if (x < allValues.length - 1) {
+                    query += ' + ';
+                } else {
+                    query += ')/' + (sum / 100);
+                }
+            }
+            query += '), "csv") )';
+
+
+            //var query = 'for c in (Ncafe_200), i in (Natms_200), e in (Nhigh_schools_200) ' +
+            // 'return encode( (c*50 + i * 50 + e*50) ,"csv" ) )';
             var data;
             $.ajax({
                 type: "POST",
@@ -73,28 +97,13 @@ define(function () {
 
 
     UserInterface.prototype.addLayer = function (request) {
-        /*
-         var surfaceImageLayer = new WorldWind.RenderableLayer();
-         surfaceImageLayer.displayName = "Rasdaman Coverage";
-         surfaceImageLayer.addRenderable(new WorldWind.SurfaceImage(new WorldWind.Sector(-90, 90, -180, 180), request)); //milano
-         wwd.addLayer(surfaceImageLayer);
-         wwd.redraw();
-         */
-
 
         var grid = this.geojson.grid;
         this.convertToshape(grid, request);
-
-
-        var callback = function (res) {
-
-        };
-
         wwd.redraw();
     }
 
     UserInterface.prototype.convertToshape = function (grid, data) {
-
 
         var csv = [];
 
@@ -124,8 +133,8 @@ define(function () {
 
             topIndex--;
 
-            if(topIndex==0){
-                topIndex=84;
+            if (topIndex == 0) {
+                topIndex = 84;
                 rightIndex--;
             }
 
@@ -135,16 +144,22 @@ define(function () {
             r.maximumNumEdgeIntervals = 1;
             var value = csv[x];
             if (!self.map[value]) {
+
                 var col = geojson.getColor(((value - 0) / (100 - 0)) * 100, colors);
-                col = WorldWind.Color.colorFromBytes(col[0], col[1], col[2], col[3]);
+                if (value == 0) {
+                    col = WorldWind.Color.colorFromBytes(col[0], col[1], col[2], 0);
+                } else {
+                    col = WorldWind.Color.colorFromBytes(col[0], col[1], col[2], 60);
+                }
                 self.map[value] = col;
             }
             r._attributes._interiorColor = self.map[value];
 
         }
+        //bbox= xMin, yMin 9.03832,45.3854 : xMax,yMax 9.27921,45.5369
 
         grid.enabled = true;
-        wwd.redraw();
+        geojson.layerManager.synchronizeLayerList();
     };
     return UserInterface
 })

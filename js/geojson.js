@@ -7,7 +7,7 @@ define(function () {
 
     };
 
-    GeoJson.prototype.add = function (name, label, active) {
+    GeoJson.prototype.add = function (name, label, active, callbackFunction) {
         var self = this;
         var resourcesUrl = "geojson/";
 
@@ -51,7 +51,7 @@ define(function () {
                     0.5 * configuration.attributes.interiorColor.red,
                     0.5 * configuration.attributes.interiorColor.green,
                     0.5 * configuration.attributes.interiorColor.blue,
-                    1.0);
+                    0.4);
             }
 
             return configuration;
@@ -60,6 +60,9 @@ define(function () {
 
             var callback = function () {
                 self.eyeDistance.call(self, polygonLayer);
+                if(callbackFunction && typeof (callbackFunction)== "function") {
+                    callbackFunction();
+                }
             }
             polygonGeoJSON.load(callback, shapeConfigurationCallback, polygonLayer);
             active ? true : false;
@@ -74,7 +77,7 @@ define(function () {
     GeoJson.prototype.milano = function (callback) {
         var resourcesUrl = "geojson/milano_grid.geojson";
 
-        var polygonLayer = new WorldWind.RenderableLayer("Milano Grid");
+        var polygonLayer = new WorldWind.RenderableLayer("CityFocus Result");
         var polygonGeoJSON = new WorldWind.GeoJSONParser(resourcesUrl);
 
 
@@ -83,15 +86,12 @@ define(function () {
 
             if (geometry.isPolygonType() || geometry.isMultiPolygonType()) {
                 configuration.attributes = new WorldWind.ShapeAttributes(null);
-                configuration.attributes.outlineWidth = 0.1;
+                configuration.attributes.outlineWidth = 0.0;
                 configuration.attributes.interiorColor = new WorldWind.Color(
                     0, 0, 0, 0);
 
-                configuration.attributes.outlineColor = new WorldWind.Color(
-                    0.5 * configuration.attributes.interiorColor.red,
-                    0.5 * configuration.attributes.interiorColor.green,
-                    0.5 * configuration.attributes.interiorColor.blue,
-                    0.2);
+
+                configuration.attributes.drawOutline=false;
             }
 
             return configuration;
@@ -100,7 +100,7 @@ define(function () {
         polygonLayer.pickEnabled=false;
         this.grid = polygonLayer;
         wwd.addLayer(polygonLayer);
-
+       // this.layerManager.synchronizeLayerList();
         polygonGeoJSON.load(callback, shapeConfigurationCallback, polygonLayer);
     };
 

@@ -33,8 +33,11 @@ require(['js/worldwind', 'js/UserInterface', 'js/geojson'],
                         var layer = new WorldWind.WmsLayer(config, null);
                         layer.detailControl = 0.9;
                         wwd.addLayer(layer);
-                        geojson.add("NIL_Zone", "Area", 1);
-                        layerManager.synchronizeLayerList();
+                        var callback= function(){
+                            geojson.milano.call(geojson);
+                        }
+                        geojson.add("NIL_Zone", "Area", 1, callback);
+                        //layerManager.synchronizeLayerList();
 
                     }
 
