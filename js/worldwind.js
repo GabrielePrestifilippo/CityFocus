@@ -28,7 +28,8 @@ define(['./LayerManager', 'src/WorldWind'],
             wwd.navigator.lookAtLocation.longitude = 9.1822;
             wwd.navigator.range = 35000;
 
-            this.layerManager.flat();
+            //this.layerManager.flat();
+
 
 
         };

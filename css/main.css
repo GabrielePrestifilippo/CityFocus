@@ -51,7 +51,7 @@ body {
 #c_one_home_app {
     background-color: #54a4ff;
     padding: 60px;
-    color: #222;
+    color: white;
 }
 
 #c_two {
@@ -285,8 +285,10 @@ a.nav-link:hover {
     #centerImage {
         width: 50% !important;
     }
+
     .container {
-        width: 80%; !important;
+        width: 80%;
+    !important;
 
     }
 
@@ -296,8 +298,6 @@ a.nav-link:hover {
 
     }
 }
-
-
 
 .navbar-nav {
 
@@ -369,15 +369,15 @@ div#centerImage img {
     width: 15%;
     height: 70%;
     border-radius: 10px;
-    position:relative;
+    position: relative;
 }
 
-#rightImages img, #rightImages a{
+#rightImages img, #rightImages a {
 
     width: 100%;
     bottom: 50%;
     position: absolute;
-    left:0;
+    left: 0;
 }
 
 body {
@@ -390,19 +390,22 @@ a:hover, a:focus {
     color: #23527c;
     text-decoration: none;
 }
+
 .tooltip-inner {
     background-color: white;
-    color:#222;
-    font-size:20px;
+    color: #222;
+    font-size: 20px;
 }
 
-.tooltip-arrow{
+.tooltip-arrow {
     border-top-color: #fff !important;
 
 }
-#rightImages a{
+
+#rightImages a {
     color: white;
 }
-#leftImages a{
+
+#leftImages a {
     color: white;
 }

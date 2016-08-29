@@ -55,8 +55,9 @@ define(function () {
             });
 
 
-            allValues = [['Ncafe_200', 50], ['Natms_200', 50], ['Nhigh_schools_200', 80]];
-            var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'];
+
+            var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+                'q', 'r','s','t','u','v','w','x','y','z'];
             var query = 'for';
             for (var x = 0; x < allValues.length; x++) {
                 query += ' ' + letters[x] + ' in (' + allValues[x][0] + ')';
@@ -78,19 +79,17 @@ define(function () {
             query += '), "csv") )';
 
 
-            //var query = 'for c in (Ncafe_200), i in (Natms_200), e in (Nhigh_schools_200) ' +
-            // 'return encode( (c*50 + i * 50 + e*50) ,"csv" ) )';
-            var data;
-            $.ajax({
-                type: "POST",
-                url: 'http://131.175.143.84/rasdaman74/ows/wcps',
-                data: {query: query},
-                success: function (res) {
-                    //console.log(res);
-                    self.addLayer(res);
-                    data = res
-                }
-            });
+
+             var data;
+             $.ajax({
+             type: "POST",
+             url: 'http://131.175.143.84/rasdaman74/ows/wcps',
+             data: {query: query},
+             success: function (res) {
+             self.addLayer(res);
+             data = res
+             }
+             });
 
         });
     };
@@ -98,8 +97,11 @@ define(function () {
 
     UserInterface.prototype.addLayer = function (request) {
 
+
         var grid = this.geojson.grid;
         this.convertToshape(grid, request);
+
+
         wwd.redraw();
     }
 
@@ -124,7 +126,8 @@ define(function () {
 
 
         var self = this;
-        var colors = [[255, 0, 0], [255, 255, 0], [0, 255, 0]];
+        //var colors = [[0, 255, 0], [255, 255, 0], [255, 0, 0]];
+        var colors = [[141, 193, 197], [255, 237, 170], [215, 25, 28]];
 
         var rightIndex = 94;
         var topIndex = 85;
@@ -147,9 +150,9 @@ define(function () {
 
                 var col = geojson.getColor(((value - 0) / (100 - 0)) * 100, colors);
                 if (value == 0) {
-                    col = WorldWind.Color.colorFromBytes(col[0], col[1], col[2], 0);
+                    col = WorldWind.Color.colorFromBytes(col[0], col[1], col[2], 50);
                 } else {
-                    col = WorldWind.Color.colorFromBytes(col[0], col[1], col[2], 60);
+                    col = WorldWind.Color.colorFromBytes(col[0], col[1], col[2], 155);
                 }
                 self.map[value] = col;
             }
@@ -163,4 +166,3 @@ define(function () {
     };
     return UserInterface
 })
-;

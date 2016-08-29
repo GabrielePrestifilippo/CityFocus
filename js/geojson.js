@@ -36,7 +36,7 @@ define(function () {
                     0.5 * configuration.attributes.interiorColor.green,
                     0.5 * configuration.attributes.interiorColor.blue,
                     1.0);
-                configuration.attributes.outlineWidth = 0.4;
+                configuration.attributes.outlineWidth = 0.55;
             }
             else if (geometry.isPolygonType() || geometry.isMultiPolygonType()) {
                 configuration.attributes = new WorldWind.ShapeAttributes(null);
@@ -45,7 +45,7 @@ define(function () {
                     1 + 0.5,
                     0.375 + 0.5,
                     0.375 + 0.5,
-                    0.4);
+                    0.0);
 
                 configuration.attributes.outlineColor = new WorldWind.Color(
                     0.5 * configuration.attributes.interiorColor.red,
@@ -75,7 +75,7 @@ define(function () {
     };
 
     GeoJson.prototype.milano = function (callback) {
-        var resourcesUrl = "geojson/milano_grid.geojson";
+        var resourcesUrl = "geojson/milano_grid.json";
 
         var polygonLayer = new WorldWind.RenderableLayer("CityFocus Result");
         var polygonGeoJSON = new WorldWind.GeoJSONParser(resourcesUrl);

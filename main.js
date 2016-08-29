@@ -31,13 +31,12 @@ require(['js/worldwind', 'js/UserInterface', 'js/geojson'],
                         config.title = "OpenStreetMap";
                         config.layerNames = "OSM-WMS";
                         var layer = new WorldWind.WmsLayer(config, null);
-                        layer.detailControl = 0.9;
+                        layer.detailControl = 1.5;
                         wwd.addLayer(layer);
                         var callback= function(){
                             geojson.milano.call(geojson);
                         }
                         geojson.add("NIL_Zone", "Area", 1, callback);
-                        //layerManager.synchronizeLayerList();
 
                     }
 
