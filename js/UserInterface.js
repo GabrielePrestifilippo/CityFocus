@@ -26,7 +26,10 @@ define(function () {
 
         opacitySlider.change(function (val) {
             var val = val.value.newValue;
-            self.geojson.grid.opacity = val / 10;
+            for(var x in self.geojson.grid.renderables){
+                self.geojson.grid.renderables[x].attributes.interiorColor.alpha=val/10;
+            }
+           // self.geojson.grid.opacity = val / 10;
         });
 
         $('a').tooltip();
@@ -38,7 +41,7 @@ define(function () {
         $('#expandLayer').click(function () {
             var open = $("#layerList").attr("data-open");
             if (open == "false") {
-                $("#layerList").css("max-height", "500px");
+                $("#layerList").css("max-height", "400px");
                 $("#layerList").attr("data-open", true);
             } else {
                 $("#layerList").css("max-height", "0px");
@@ -49,7 +52,7 @@ define(function () {
         $('#expandRaster').click(function () {
             var open = $("#rasterList").attr("data-open");
             if (open == "false") {
-                $("#rasterList").css("max-height", "500px");
+                $("#rasterList").css("max-height", "400px");
                 $("#rasterList").attr("data-open", true);
             } else {
                 $("#rasterList").css("max-height", "0px");
@@ -139,7 +142,7 @@ define(function () {
 
         $("#expandRaster").show();
         $("#expandLayer").show();
-        //$("#opacity").show();
+       // $("#opacity").show();
         wwd.redraw();
     };
 

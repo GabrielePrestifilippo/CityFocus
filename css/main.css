@@ -336,7 +336,7 @@ a.nav-link:hover {
 
 div#criteria_selected {
     text-align: left;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 div#centerImage img {
@@ -463,7 +463,8 @@ div#legend {
     padding-left: 0;
     margin-bottom: 0px;
     max-height: 0px;
-    overflow: hidden;
+    overflow: scroll;
+    overflow-x: hidden;
     display: block;
     height: auto;
     transition: all 0.5s;
@@ -471,8 +472,9 @@ div#legend {
 #layerList{
     padding-left: 0;
     margin-bottom: 0px;
-    max-height: 65px;
-    overflow: hidden;
+    max-height: 0px;
+    overflow: scroll;
+    overflow-x: hidden;
     display: block;
     height: auto;
     transition: all 0.5s;

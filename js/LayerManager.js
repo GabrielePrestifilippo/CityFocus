@@ -145,14 +145,16 @@ define(function () {
                 continue;
             }
 
+            var rasterItem = undefined;
+            var layerItem = undefined;
 
             if (layer.raster) {
 
-                var rasterItem = $('<button class="list-group-item btn btn-block">' + layer.displayName + '</button>');
+                rasterItem = $('<button class="list-group-item btn btn-block">' + layer.displayName + '</button>');
                 rasterListItem.append(rasterItem);
 
             } else {
-                var layerItem = $('<button class="list-group-item btn btn-block">' + layer.displayName + '</button>');
+                layerItem = $('<button class="list-group-item btn btn-block">' + layer.displayName + '</button>');
                 layerListItem.append(layerItem);
             }
             if (layer.showSpinner && Spinner) {
@@ -160,22 +162,22 @@ define(function () {
                     scale: 0.9,
                 };
                 var spinner = new Spinner(opts).spin();
-                if(layerItem)
-                layerItem.append(spinner.el);
-                if(rasterItem)
-                rasterItem.append(spinner.el);
+                if (layerItem)
+                    layerItem.append(spinner.el);
+                if (rasterItem)
+                    rasterItem.append(spinner.el);
             }
 
             if (layer.enabled) {
-                if(layerItem)
-                layerItem.addClass("active");
-                if(rasterItem)
-                rasterItem.addClass("active");
+                if (layerItem)
+                    layerItem.addClass("active");
+                if (rasterItem)
+                    rasterItem.addClass("active");
             } else {
-                if(layerItem)
-                layerItem.removeClass("active");
-                if(rasterItem)
-                rasterItem.removeClass("active");
+                if (layerItem)
+                    layerItem.removeClass("active");
+                if (rasterItem)
+                    rasterItem.removeClass("active");
             }
         }
 
