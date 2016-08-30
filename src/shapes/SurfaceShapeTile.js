@@ -142,6 +142,7 @@ define([
 
         // Internal use only. Intentionally not documented.
         SurfaceShapeTile.prototype.needsUpdate = function(dc) {
+
             var idx, len, surfaceShape, surfaceShapeStateKey;
 
             // If the number of shapes have changed, ... (cheap test)

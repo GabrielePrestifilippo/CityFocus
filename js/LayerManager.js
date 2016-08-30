@@ -185,12 +185,12 @@ define(function () {
 
     LayerManager.prototype.createProjectionList = function () {
         var projectionNames = [
-            "2D",
-            "3D"
+            "3D",
+            "2D"
         ];
         var projectionDropdown = $("#projectionDropdown");
 
-        var dropdownButton = $('<button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown">2D<span class="caret"></span></button>');
+        var dropdownButton = $('<button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown">3D<span class="caret"></span></button>');
         projectionDropdown.append(dropdownButton);
 
         var ulItem = $('<ul class="dropdown-menu">');

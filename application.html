@@ -12,12 +12,13 @@
     <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/progress.css">
     <link rel="stylesheet" href="css/jquery-ui.min.css">
-    <script src="js/jquery-ui.min.js"></script>
-
-
+    <!--<script src="js/jquery-ui.min.js"></script>-->
+    <script src="js/bootstrap-slider.js"></script>
+    <script>var application = true;</script>
     <script data-main="main" src="js/require.js"></script>
     <script src="js/percentageloader.js"></script>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/bootstrap-slider.min.css">
 
 </head>
 <script>
@@ -28,7 +29,7 @@
 <div id="header">
 
 </div>
-<div class="container" id="c_one">
+<div class="container" id="c_one_home_app">
 
 
     <div class="container-fluid">
@@ -53,6 +54,7 @@
         Criteria for Milan:
     </div>
 
+
     <div id="criteria">
         <div class="row">
 
@@ -70,43 +72,43 @@
 
                             <div class="name_slider" id="ATMs">
                                 <label>ATMs</label>
-                                <div class="slider" id="Natms"></div>
+                                <div class="slider" id="Natms_200"></div>
                             </div>
                             <div class="name_slider" id="Banks">
                                 <label>Banks</label>
-                                <div class="slider" id="Nbanks"></div>
+                                <div class="slider" id="Nbanks_200"></div>
                             </div>
                             <div class="name_slider" id="Coffe_Shop">
                                 <label>Coffe Shop</label>
-                                <div class="slider" id="Ncafe"></div>
+                                <div class="slider" id="Ncafe_200"></div>
                             </div>
-                            <div class="name_slider" id="Coffe_Shop">
+                            <div class="name_slider" id="Hospitals">
                                 <label>Hospitals</label>
-                                <div class="slider" id="Nhospitals"></div>
+                                <div class="slider" id="Nhospitals_200"></div>
                             </div>
                             <div class="name_slider" id="Pharmacies">
                                 <label>Pharmacies</label>
-                                <div class="slider" id="Npharmacies"></div>
+                                <div class="slider" id="Npharmacies_200"></div>
                             </div>
                             <div class="name_slider" id="Police_station">
                                 <label>Police Station</label>
-                                <div class="slider" id="Npolice_station"></div>
+                                <div class="slider" id="Npolice_stations_200"></div>
                             </div>
                             <div class="name_slider" id="Post_office">
                                 <label>Post Office</label>
-                                <div class="slider" id="Npost_offices"></div>
+                                <div class="slider" id="Npost_offices_200"></div>
                             </div>
                             <div class="name_slider" id="Supermarkets">
-                                <label>Veterinary_Clinics</label>
-                                <div class="slider" id="Nsupermarkets"></div>
+                                <label>Supermarkets</label>
+                                <div class="slider" id="Nsupermarkets_200"></div>
                             </div>
                             <div class="name_slider" id="Veterinary clinics">
-                                <label>Pharmacies</label>
-                                <div class="slider" id="Nveterinary_clinics"></div>
+                                <label>Veterinary Clinics</label>
+                                <div class="slider" id="Nveterinary_clinics_200"></div>
                             </div>
                             <div class="name_slider" id="Wifi">
                                 <label>Wifi</label>
-                                <div class="slider" id="Nwifi"></div>
+                                <div class="slider" id="Nwifi_200"></div>
                             </div>
 
                         </div>
@@ -119,7 +121,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a title="This means...something else" data-toggle="collapse" href="#collapse2">Near to Nature</a>
+                            <a title="This means...something else" data-toggle="collapse" href="#collapse2">Near to
+                                Nature</a>
                         </h4>
                     </div>
                     <div id="collapse2" class="panel-collapse collapse">
@@ -127,19 +130,19 @@
 
                             <div class="name_slider" id="Parks">
                                 <label>Parks</label>
-                                <div class="slider" id="Nparchi"></div>
+                                <div class="slider" id="Nparchi_200"></div>
                             </div>
                             <div class="name_slider" id="Dog_parks">
                                 <label>Dog Parks</label>
-                                <div class="slider" id="Narea_cani"></div>
+                                <div class="slider" id="Narea_cani_200"></div>
                             </div>
                             <div class="name_slider" id="Green_areas">
                                 <label>Green areas</label>
-                                <div class="slider" id="Naree_verdi_clean"></div>
+                                <div class="slider" id="Naree_verdi_200"></div>
                             </div>
                             <div class="name_slider" id="Water">
                                 <label>Natural Water</label>
-                                <div class="slider" id="Nwater"></div>
+                                <div class="slider" id="Nwater_200"></div>
                             </div>
                         </div>
 
@@ -151,7 +154,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" title="This means...something" href="#collapse3">Near to Education</a>
+                            <a data-toggle="collapse" title="This means...something" href="#collapse3">Near to
+                                Education</a>
                         </h4>
                     </div>
                     <div id="collapse3" class="panel-collapse collapse">
@@ -159,23 +163,23 @@
 
                             <div class="name_slider" id="Universities">
                                 <label>Universities</label>
-                                <div class="slider" id="Nuniversities"></div>
+                                <div class="slider" id="NUniversities_200"></div>
                             </div>
                             <div class="name_slider" id="High_schools">
                                 <label>High Schools</label>
-                                <div class="slider" id="Nhigh_schools"></div>
+                                <div class="slider" id="Nhigh_schools_200"></div>
                             </div>
                             <div class="name_slider" id="Primary_schools">
                                 <label>Primary schools</label>
-                                <div class="slider" id="Nprimary_schools"></div>
+                                <div class="slider" id="Nprimary_schools_200"></div>
                             </div>
                             <div class="name_slider" id="Secondary_schools">
                                 <label>Secondary schools</label>
-                                <div class="slider" id="Nsecondary_schools"></div>
+                                <div class="slider" id="Nsecondary_schools_200"></div>
                             </div>
                             <div class="name_slider" id="Kindergarten">
                                 <label>Kindergarten</label>
-                                <div class="slider" id="NKindergarten"></div>
+                                <div class="slider" id="Nkindergarten_200"></div>
                             </div>
                         </div>
 
@@ -187,19 +191,20 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" title="This means...something" href="#collapse4">Near to Transportation</a>
+                            <a data-toggle="collapse" title="This means...something" href="#collapse4">Near to
+                                Transportation</a>
                         </h4>
                     </div>
                     <div id="collapse4" class="panel-collapse collapse">
                         <div class="panel-body">
 
                             <div class="name_slider" id="Train_metro">
-                                <label>Train and metro stations</label>
-                                <div class="slider" id="NTrain_MetroStations"></div>
+                                <label>Train and metro stations(Problem)</label>
+                                <div class="slider" id="Ntrain_metrostations_200"></div>
                             </div>
                             <div class="name_slider" id="Bus_stops">
                                 <label>Bus Stops</label>
-                                <div class="slider" id="Nbus_stops"></div>
+                                <div class="slider" id="Nbus_stops_200"></div>
                             </div>
 
                         </div>
@@ -212,18 +217,19 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a title="This means...something" data-toggle="collapse" href="#collapse5">Environmental conditions</a>
+                            <a title="This means...something" data-toggle="collapse" href="#collapse5">Environmental
+                                conditions</a>
                         </h4>
                     </div>
                     <div id="collapse5" class="panel-collapse collapse">
                         <div class="panel-body">
 
                             <div class="name_slider" id="Air_quality">
-                                <label>Air Quality</label>
-                                <div class="slider" id="new_EEA"></div>
+                                <label>Air Quality(Problem)</label>
+                                <div class="slider" id="N_EEA_200"></div>
                             </div>
                             <div class="name_slider" id="Temperature">
-                                <label>Temperature</label>
+                                <label>Temperature(missing)</label>
                                 <div class="slider" id="pending"></div>
                             </div>
 
@@ -246,15 +252,15 @@
 
                             <div class="name_slider" id="Industrial_units">
                                 <label>Industrial or commercial units</label>
-                                <div class="slider" id="commind"></div>
+                                <div class="slider" id="commind_200"></div>
                             </div>
                             <div class="name_slider" id="Continuous_id">
                                 <label>Continuous urban fabric</label>
-                                <div class="slider" id="continuous"></div>
+                                <div class="slider" id="continuous_200"></div>
                             </div>
                             <div class="name_slider" id="Discontinuous_id">
                                 <label>Discontinuous urban fabric</label>
-                                <div class="slider" id="discontinuous"></div>
+                                <div class="slider" id="discontinuous_200"></div>
                             </div>
 
 
@@ -264,7 +270,36 @@
                 </div>
             </div>
 
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a title="This means...something" data-toggle="collapse" href="#collapse7">Population Density</a>
+                        </h4>
+                    </div>
+                    <div id="collapse7" class="panel-collapse collapse">
+                        <div class="panel-body">
 
+                            <div class="name_slider" id="low_Population_density">
+                                <label>Low Population density</label>
+                                <div class="slider" id="lowpop_200"></div>
+                            </div>
+                            <div class="name_slider" id="medium_Population_density">
+                                <label>Medium Population density</label>
+                                <div class="slider" id="medpop_200"></div>
+                            </div>
+                            <div class="name_slider" id="high_Population_density">
+                                <label>High Population density</label>
+                                <div class="slider" id="highpop_200"></div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
         </div>
         <div class="bigCentral">
