@@ -78,7 +78,7 @@ define(function () {
                 if (x < allValues.length - 1) {
                     comparison += ''+plus+'';
                 } else {
-                    comparison += ')/' + (sum / 100) + ')';
+                    comparison += ')/' + sum + ')';
                 }
             }
 
@@ -86,11 +86,24 @@ define(function () {
 
             console.log(comparison)
 
-            var finalQuery = queryhead +' return encode( (unsigned char) switch case ' + comparison + '= 1 return {red: 255; green: 255; blue: 255}' +
-            ' case 0.7 > '+ comparison +' return {red: 0; green: 0; blue: 255}' +
-            ' case 0.5 > '+ comparison +' return {red: 255; green: 255; blue: 0}' +
-            ' case 0.2 > '+ comparison +' return {red: 255; green: 140; blue: 0}' +
-            ' default return {red: 255; green: 0; blue: 0},  "gtiff")';
+            // var finalQuery = queryhead +' return encode( (unsigned char) switch case ' + comparison + '= 1 return {red: 255; green: 255; blue: 255}' +
+            // ' case 0.7 > '+ comparison +' return {red: 0; green: 0; blue: 255}' +
+            // ' case 0.5 > '+ comparison +' return {red: 255; green: 255; blue: 0}' +
+            // ' case 0.2 > '+ comparison +' return {red: 255; green: 140; blue: 0}' +
+            // ' default return {red: 255; green: 0; blue: 0},  "gtiff")';
+
+            var finalQuery = queryhead +' return encode( (unsigned char) switch case ' + comparison + '= 1 return {red: 215; green: 25; blue: 28}' +
+            ' case 0.9 < '+ comparison +' return {red: 231; green: 84; blue: 55}' +
+            ' case 0.8 < '+ comparison +' return {red: 246; green: 144; blue: 83}' +
+            ' case 0.7 < '+ comparison +' return {red: 249; green: 158; blue: 89}' +
+            ' case 0.6 < '+ comparison +' return {red: 254; green: 201; blue: 128}' +
+            ' case 0.5 < '+ comparison +' return {red: 255; green: 237; blue: 170}' +
+            ' case 0.4 < '+ comparison +' return {red: 237; green: 248; blue: 185}' +
+            ' case 0.3 < '+ comparison +' return {red: 199; green: 233; blue: 173}' +
+            ' case 0.2 < '+ comparison +' return {red: 157; green: 211; blue: 167}' +
+            ' case 0.1 < '+ comparison +' return {red: 157; green: 211; blue: 167}' +
+            ' default return {red: 0; green: 0; blue: 0},  "gtiff")';
+
 
             console.log(finalQuery)
             self.addLayer(finalQuery);
