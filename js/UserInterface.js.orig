@@ -1,4 +1,3 @@
-
 define(function () {
     "use strict";
 
@@ -6,6 +5,7 @@ define(function () {
         this.layerManager = layerManager;
         this.geojson = geojson;
         this.map = {};
+
     };
 
 
@@ -25,38 +25,15 @@ define(function () {
         });
 
         opacitySlider.change(function (val) {
-            var val = val.value.newValue;
-            self.geojson.grid.opacity = val / 10;
+            var val=val.value.newValue;
+            self.geojson.grid.opacity=val/10;
         });
 
         $('a').tooltip();
 
         $('a').click(function () {
             $('a').tooltip('hide');
-        });
-
-        $('#expandLayer').click(function () {
-            var open = $("#layerList").attr("data-open");
-            if (open == "false") {
-                $("#layerList").css("max-height", "500px");
-                $("#layerList").attr("data-open", true);
-            } else {
-                $("#layerList").css("max-height", "0px");
-                $("#layerList").attr("data-open", "false")
-            }
-        });
-
-        $('#expandRaster').click(function () {
-            var open = $("#rasterList").attr("data-open");
-            if (open == "false") {
-                $("#rasterList").css("max-height", "500px");
-                $("#rasterList").attr("data-open", true);
-            } else {
-                $("#rasterList").css("max-height", "0px");
-                $("#rasterList").attr("data-open", "false")
-            }
-        });
-
+        })
 
         $("#submitQuery").click(function () {
             var count = 0;
@@ -91,30 +68,42 @@ define(function () {
 
             });
 
+<<<<<<< .merge_file_a07328
 
             var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
                 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
             var query = 'for';
+=======
+            var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+                'q', 'r','s','t','u','v','w','x','y','z'];
+
+            var queryhead = 'for';
+>>>>>>> .merge_file_a06436
             for (var x = 0; x < allValues.length; x++) {
-                query += ' ' + letters[x] + ' in (' + allValues[x][0] + ')';
+                queryhead += ' ' + letters[x] + ' in (' + allValues[x][0] + ')';
                 if (x < allValues.length - 1) {
-                    query += ',';
+                    queryhead += ',';
                 }
             }
-            query += ' return encode( ( (';
+
+            console.log(queryhead)
+
+            // query += ' return encode( ( (';
+            //
+            var plus = encodeURIComponent('+');
             var sum = 0;
+            var comparison = '((';
             for (var x = 0; x < allValues.length; x++) {
-                query += letters[x] + '*' + allValues[x][1];
+                 comparison += letters[x] + '*' + allValues[x][1];
                 sum += allValues[x][1];
                 if (x < allValues.length - 1) {
-                    query += ' + ';
+                    comparison += ''+plus+'';
                 } else {
-                    query += ')/' + (sum / 100);
+                    comparison += ')/' + (sum / 100) + ')';
                 }
             }
-            query += '), "csv") )';
 
-
+<<<<<<< .merge_file_a07328
             var data;
             $.ajax({
                 type: "POST",
@@ -123,75 +112,61 @@ define(function () {
                 success: function (res) {
                     self.addLayer(res);
                     data = res
-                    self.addRasters(allValues);
                 }
             });
+=======
+            // query += '), "gtiff") )';
 
+            console.log(comparison)
+
+            var finalQuery = queryhead +' return encode( (unsigned char) switch case ' + comparison + '= 1 return {red: 255; green: 255; blue: 255}' +
+            ' case 0.7 > '+ comparison +' return {red: 0; green: 0; blue: 255}' +
+            ' case 0.5 > '+ comparison +' return {red: 255; green: 255; blue: 0}' +
+            ' case 0.2 > '+ comparison +' return {red: 255; green: 140; blue: 0}' +
+            ' default return {red: 255; green: 0; blue: 0},  "gtiff")';
+
+            console.log(finalQuery)
+            self.addLayer(finalQuery);
+            //  var data;
+            //  $.ajax({
+            //  type: "POST",
+            //  url: 'http://131.175.143.84/rasdaman74/ows/wcps',
+            //  data: {query: query},
+            //  success: function (res) {
+            //  self.addLayer(res);
+            //  data = res
+            //  }
+            //  });
+>>>>>>> .merge_file_a06436
 
         });
     };
 
+
     UserInterface.prototype.addLayer = function (request) {
 
+        var wcpsEndPoint = 'http://131.175.143.84/rasdaman74/ows?'
+        var resourcesUrl = wcpsEndPoint +'query='+ request;
 
-        var grid = this.geojson.grid;
-        this.convertToshape(grid, request);
+        var geotiffObject = new WorldWind.GeoTiffReader(resourcesUrl);
 
-        $("#expandRaster").show();
-        $("#expandLayer").show();
-        //$("#opacity").show();
+<<<<<<< .merge_file_a07328
+       // $("#opacity").show();
         wwd.redraw();
-    };
+=======
+        var geoTiffImage = geotiffObject.readAsImage(function (canvas) {
+          var surfaceGeoTiff = new WorldWind.SurfaceImage(
+              geotiffObject.metadata.bbox,
+              new WorldWind.ImageSource(canvas)
+          );
 
-    UserInterface.prototype.addRasters = function (allValues) {
-        var self = this;
-        for (var x = 0; x < allValues.length; x++) {
-            var query = 'for a in (' + allValues[x][0] + ')  return encode ( a*100, "csv") ';
-
-            var ajax = function (z) {
-                $.ajax({
-                    type: "POST",
-                    url: 'http://131.175.143.84/rasdaman74/ows/wcps',
-                    data: {query: query},
-                    success: function (res) {
-                        self.addSingleRaster(res, allValues[z][0]);
-                    }
-                });
-            }
-
-            ajax(x);
-        }
-    };
-
-
-
-    UserInterface.prototype.addSingleRaster = function (res, name) {
-
-        var self = this;
-        var label = $("#" + name).parent().find("label").text();
-        var polygonLayer = new WorldWind.RenderableLayer(label);
-
-        var polygonGeoJSON = new WorldWind.GeoJSONParser(geojson.JSONgrid);
-        var shapeConfigurationCallback = function (geometry, properties) {
-            var configuration = {};
-            if (geometry.isPolygonType() || geometry.isMultiPolygonType()) {
-                configuration.attributes = new WorldWind.ShapeAttributes(null);
-                configuration.attributes.outlineWidth = 0.0;
-                configuration.attributes.drawOutline = false;
-            }
-            return configuration;
-        };
-        var callback = function (polygonLayer) {
-            self.convertToshape(polygonLayer, res);
-            polygonLayer.raster = true;
-            polygonLayer.enabled = false;
-            wwd.addLayer(polygonLayer);
-            layerManager.synchronizeLayerList();
-        }
-        polygonGeoJSON.load(callback, shapeConfigurationCallback, polygonLayer);
-
-
-    };
+          var geotiffLayer = new WorldWind.RenderableLayer("GeoTiff");
+          geotiffLayer.addRenderable(surfaceGeoTiff);
+          wwd.addLayer(geotiffLayer);
+          wwd.redraw();
+        });
+>>>>>>> .merge_file_a06436
+    }
 
     UserInterface.prototype.convertToshape = function (grid, data) {
 
@@ -234,8 +209,8 @@ define(function () {
 
             var r = grid.renderables[(94 * topIndex) - rightIndex];
 
-            //r.pathType = WorldWind.LINEAR;
-           // r.maximumNumEdgeIntervals = 1;
+            r.pathType = WorldWind.LINEAR;
+            r.maximumNumEdgeIntervals = 1;
             var value = csv[x];
             value = Math.round(value / 10) * 10;
             if (!self.map[value]) {
@@ -249,7 +224,7 @@ define(function () {
                 }
                 self.map[value] = col;
             }
-            r.attributes.interiorColor = self.map[value];
+            r._attributes._interiorColor = self.map[value];
 
         }
 
@@ -258,10 +233,8 @@ define(function () {
         }
 
         grid.enabled = true;
-        grid.opacity = 0.5;
-        layerManager.synchronizeLayerList();
+        grid.opacity=0.5;
+        geojson.layerManager.synchronizeLayerList();
     };
-
     return UserInterface
-})
-
+});

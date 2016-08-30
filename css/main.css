@@ -459,3 +459,25 @@ div#legend {
 #opacity{
     display:none;
 }
+#rasterList{
+    padding-left: 0;
+    margin-bottom: 0px;
+    max-height: 0px;
+    overflow: hidden;
+    display: block;
+    height: auto;
+    transition: all 0.5s;
+}
+#layerList{
+    padding-left: 0;
+    margin-bottom: 0px;
+    max-height: 65px;
+    overflow: hidden;
+    display: block;
+    height: auto;
+    transition: all 0.5s;
+}
+
+#expandRaster{
+    display:none;
+}

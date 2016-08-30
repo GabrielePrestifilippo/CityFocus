@@ -12,7 +12,7 @@ define(function () {
         var resourcesUrl = "geojson/";
 
 
-        var polygonLayer = new WorldWind.RenderableLayer(label);
+        var polygonLayer = new WorldWind.RenderableLayer(label + " vector");
         var polygonGeoJSON = new WorldWind.GeoJSONParser(resourcesUrl + name + ".geojson");
 
         var placemarkAttributes = new WorldWind.PlacemarkAttributes(null);
@@ -60,7 +60,7 @@ define(function () {
 
             var callback = function () {
                 self.eyeDistance.call(self, polygonLayer);
-                if(callbackFunction && typeof (callbackFunction)== "function") {
+                if (callbackFunction && typeof (callbackFunction) == "function") {
                     callbackFunction();
                 }
             }
@@ -68,7 +68,7 @@ define(function () {
                 polygonGeoJSON.load(callback, shapeConfigurationCallback, polygonLayer);
                 active ? true : false;
                 polygonLayer.enabled = active;
-            }catch(e){
+            } catch (e) {
                 console.log("No vector available" + e);
             }
 
@@ -81,8 +81,17 @@ define(function () {
     GeoJson.prototype.milano = function (callback) {
         var resourcesUrl = "geojson/milano_grid.json";
 
+        var self = this;
+        $.ajax({
+            url: "geojson/milano_grid.json",
+            success: function (res) {
+                self.JSONgrid = JSON.stringify(res);
+                var polygonGeoJSON = new WorldWind.GeoJSONParser(JSON.stringify(res));
+                polygonGeoJSON.load(callback, shapeConfigurationCallback, polygonLayer);
+            }
+        });
+
         var polygonLayer = new WorldWind.RenderableLayer("CityFocus Result");
-        var polygonGeoJSON = new WorldWind.GeoJSONParser(resourcesUrl);
 
 
         var shapeConfigurationCallback = function (geometry, properties) {
@@ -95,18 +104,19 @@ define(function () {
                     0, 0, 0, 0);
 
 
-                configuration.attributes.drawOutline=false;
+                configuration.attributes.drawOutline = false;
             }
 
             return configuration;
         };
         polygonLayer.enabled = false;
-        polygonLayer.pickEnabled=false;
-        polygonLayer.opacity=0.5;
+        polygonLayer.pickEnabled = false;
+        polygonLayer.opacity = 0.5;
+        polygonLayer.raster=true;
         this.grid = polygonLayer;
         wwd.addLayer(polygonLayer);
-       // this.layerManager.synchronizeLayerList();
-        polygonGeoJSON.load(callback, shapeConfigurationCallback, polygonLayer);
+        // this.layerManager.synchronizeLayerList();
+
     };
 
     GeoJson.prototype.getColor = function (weight, inputColors) {
@@ -130,10 +140,11 @@ define(function () {
         return [rgb[0], rgb[1], rgb[2], 255];
     };
 
+
     GeoJson.prototype.eyeDistance = function (layer) {
         if (layer.renderables) {
             wwd.addLayer(layer);
-            if (layer.displayName !== "Area") {
+            if (layer.displayName !== "Area vector") {
                 this.layers.push(layer);
             }
             for (var x in layer.renderables) {

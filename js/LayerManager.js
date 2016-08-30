@@ -129,9 +129,14 @@ define(function () {
 
     LayerManager.prototype.synchronizeLayerList = function () {
         var layerListItem = $("#layerList");
+        var rasterListItem = $("#rasterList");
 
         layerListItem.find("button").off("click");
         layerListItem.find("button").remove();
+
+        rasterListItem.find("button").off("click");
+        rasterListItem.find("button").remove();
+
 
         // Synchronize the displayed layer list with the World Window's layer list.
         for (var i = 2, len = this.wwd.layers.length; i < len; i++) {
@@ -139,21 +144,38 @@ define(function () {
             if (layer.hide) {
                 continue;
             }
-            var layerItem = $('<button class="list-group-item btn btn-block">' + layer.displayName + '</button>');
-            layerListItem.append(layerItem);
 
+
+            if (layer.raster) {
+
+                var rasterItem = $('<button class="list-group-item btn btn-block">' + layer.displayName + '</button>');
+                rasterListItem.append(rasterItem);
+
+            } else {
+                var layerItem = $('<button class="list-group-item btn btn-block">' + layer.displayName + '</button>');
+                layerListItem.append(layerItem);
+            }
             if (layer.showSpinner && Spinner) {
                 var opts = {
                     scale: 0.9,
                 };
                 var spinner = new Spinner(opts).spin();
+                if(layerItem)
                 layerItem.append(spinner.el);
+                if(rasterItem)
+                rasterItem.append(spinner.el);
             }
 
             if (layer.enabled) {
+                if(layerItem)
                 layerItem.addClass("active");
+                if(rasterItem)
+                rasterItem.addClass("active");
             } else {
+                if(layerItem)
                 layerItem.removeClass("active");
+                if(rasterItem)
+                rasterItem.removeClass("active");
             }
         }
 
@@ -161,27 +183,12 @@ define(function () {
         layerListItem.find("button").on("click", function (e) {
             self.onLayerClick($(this));
         });
+
+        rasterListItem.find("button").on("click", function (e) {
+            self.onLayerClick($(this));
+        });
+
     };
-    //
-    //LayerManager.prototype.updateVisibilityState = function (worldWindow) {
-    //    var layerButtons = $("#layerList").find("button"),
-    //        layers = worldWindow.layers;
-    //
-    //    for (var i = 0; i < layers.length; i++) {
-    //        var layer = layers[i];
-    //        for (var j = 0; j < layerButtons.length; j++) {
-    //            var button = layerButtons[j];
-    //
-    //            if (layer.displayName === button.innerText) {
-    //                if (layer.inCurrentFrame) {
-    //                    button.innerHTML = "<em>" + layer.displayName + "</em>";
-    //                } else {
-    //                    button.innerHTML = layer.displayName;
-    //                }
-    //            }
-    //        }
-    //    }
-    //};
 
     LayerManager.prototype.createProjectionList = function () {
         var projectionNames = [
