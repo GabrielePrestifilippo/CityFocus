@@ -16,7 +16,7 @@
     <script src="js/bootstrap-slider.js"></script>
     <script>var application = true;</script>
     <script data-main="main" src="js/require.js"></script>
-    <script src="js/percentageloader.js"></script>
+
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/bootstrap-slider.min.css">
 
@@ -274,7 +274,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a title="This means...something" data-toggle="collapse" href="#collapse7">Population Density</a>
+                            <a title="This means...something" data-toggle="collapse" href="#collapse7">Population
+                                Density</a>
                         </h4>
                     </div>
                     <div id="collapse7" class="panel-collapse collapse">
@@ -292,7 +293,6 @@
                                 <label>High Population density</label>
                                 <div class="slider" id="highpop_200"></div>
                             </div>
-
 
 
                         </div>
@@ -320,6 +320,13 @@
         </div>
         <br>
         <br>
+
+        <div id="opacity">
+            <h4>Result Opacity</h4>
+            <div id="opacity_slider"></div>
+        </div>
+        <br>
+
         <h4>Selected Criteria</h4>
         <div id="criteria_selected">
 
@@ -327,6 +334,29 @@
         <br>
     </div>
     <div class="col-sm-9" id="globe">
+        <div id="legend">
+            <span>Legend</span><br>
+            <div class="ls">0-10%</div>
+            <div class="sq sq1"></div>
+            <div class="ls">10-20%</div>
+            <div class="sq sq2"></div>
+            <div class="ls">20-30%</div>
+            <div class="sq sq3"></div>
+            <div class="ls">30-40%</div>
+            <div class="sq sq4"></div>
+            <div class="ls">40-50%</div>
+            <div class="sq sq5"></div>
+            <div class="ls">50-60%</div>
+            <div class="sq sq6"></div>
+            <div class="ls">60-70%</div>
+            <div class="sq sq7"></div>
+            <div class="ls">70-80%</div>
+            <div class="sq sq8"></div>
+            <div class="ls">80-90%</div>
+            <div class="sq sq9"></div>
+            <div class="ls">90-100%</div>
+            <div class="sq sq10"></div>
+        </div>
         <canvas id="canvasOne" width="1000" height="1000" style="width: 100%; height: 65%">
             Your browser does not support HTML5 Canvas.
         </canvas>

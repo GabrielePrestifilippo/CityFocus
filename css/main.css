@@ -409,3 +409,53 @@ a:hover, a:focus {
 #leftImages a {
     color: white;
 }
+div#legend {
+    width: 120px;
+    float: right;
+    position: absolute;
+    background-color: white;
+    right: 0px;
+    border-bottom-left-radius: 7px;
+}
+.ls{
+    float:left;
+    width:100px;
+}
+.sq{
+    width:15px;
+    height:15px;
+    float:left;
+}
+.sq1{
+    background-color:#8dc1c5;
+}
+.sq2{
+      background-color:#9fccc3;
+  }
+.sq3{
+    background-color:#b9dbc1;
+}
+.sq4{
+    background-color:#d7ebbe;
+}
+.sq5{
+    background-color:#f1edb7;
+}
+.sq6{
+    background-color:#ffedaa;
+}
+.sq7{
+    background-color:#ffcf92;
+}
+.sq8{
+    background-color:#f8a273;
+}
+.sq9{
+    background-color:#ec6d50;
+}
+.sq10{
+    background-color:#df3d31;
+}
+#opacity{
+    display:none;
+}

@@ -64,9 +64,13 @@ define(function () {
                     callbackFunction();
                 }
             }
-            polygonGeoJSON.load(callback, shapeConfigurationCallback, polygonLayer);
-            active ? true : false;
-            polygonLayer.enabled = active;
+            try {
+                polygonGeoJSON.load(callback, shapeConfigurationCallback, polygonLayer);
+                active ? true : false;
+                polygonLayer.enabled = active;
+            }catch(e){
+                console.log("No vector available" + e);
+            }
 
         } catch (e) {
             console.log("No vector available" + e);
@@ -98,6 +102,7 @@ define(function () {
         };
         polygonLayer.enabled = false;
         polygonLayer.pickEnabled=false;
+        polygonLayer.opacity=0.5;
         this.grid = polygonLayer;
         wwd.addLayer(polygonLayer);
        // this.layerManager.synchronizeLayerList();
