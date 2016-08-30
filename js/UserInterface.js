@@ -71,37 +71,54 @@ define(function () {
 
             var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
                 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-            var query = 'for';
+
+            var queryhead = 'for';
             for (var x = 0; x < allValues.length; x++) {
-                query += ' ' + letters[x] + ' in (' + allValues[x][0] + ')';
+                queryhead += ' ' + letters[x] + ' in (' + allValues[x][0] + ')';
                 if (x < allValues.length - 1) {
-                    query += ',';
+                    queryhead += ',';
                 }
             }
-            query += ' return encode( ( (';
+
+            console.log(queryhead)
+
+            // query += ' return encode( ( (';
+            //
+            var plus = encodeURIComponent('+');
             var sum = 0;
+            var comparison = '((';
             for (var x = 0; x < allValues.length; x++) {
-                query += letters[x] + '*' + allValues[x][1];
+                 comparison += letters[x] + '*' + allValues[x][1];
                 sum += allValues[x][1];
                 if (x < allValues.length - 1) {
-                    query += ' + ';
+                    comparison += ''+plus+'';
                 } else {
-                    query += ')/' + (sum / 100);
+                    comparison += ')/' + (sum / 100) + ')';
                 }
             }
-            query += '), "csv") )';
 
+            // query += '), "gtiff") )';
 
-            var data;
-            $.ajax({
-                type: "POST",
-                url: 'http://131.175.143.84/rasdaman74/ows/wcps',
-                data: {query: query},
-                success: function (res) {
-                    self.addLayer(res);
-                    data = res
-                }
-            });
+            console.log(comparison)
+
+            var finalQuery = queryhead +' return encode( (unsigned char) switch case ' + comparison + '= 1 return {red: 255; green: 255; blue: 255}' +
+            ' case 0.7 > '+ comparison +' return {red: 0; green: 0; blue: 255}' +
+            ' case 0.5 > '+ comparison +' return {red: 255; green: 255; blue: 0}' +
+            ' case 0.2 > '+ comparison +' return {red: 255; green: 140; blue: 0}' +
+            ' default return {red: 255; green: 0; blue: 0},  "gtiff")';
+
+            console.log(finalQuery)
+            self.addLayer(finalQuery);
+            //  var data;
+            //  $.ajax({
+            //  type: "POST",
+            //  url: 'http://131.175.143.84/rasdaman74/ows/wcps',
+            //  data: {query: query},
+            //  success: function (res) {
+            //  self.addLayer(res);
+            //  data = res
+            //  }
+            //  });
 
         });
     };
@@ -109,10 +126,22 @@ define(function () {
 
     UserInterface.prototype.addLayer = function (request) {
 
+        var wcpsEndPoint = 'http://131.175.143.84/rasdaman74/ows?'
+        var resourcesUrl = wcpsEndPoint +'query='+ request;
 
-        var grid = this.geojson.grid;
-        this.convertToshape(grid, request);
+        var geotiffObject = new WorldWind.GeoTiffReader(resourcesUrl);
 
+        var geoTiffImage = geotiffObject.readAsImage(function (canvas) {
+          var surfaceGeoTiff = new WorldWind.SurfaceImage(
+              geotiffObject.metadata.bbox,
+              new WorldWind.ImageSource(canvas)
+          );
+
+          var geotiffLayer = new WorldWind.RenderableLayer("GeoTiff");
+          geotiffLayer.addRenderable(surfaceGeoTiff);
+          wwd.addLayer(geotiffLayer);
+          wwd.redraw();
+        });
        // $("#opacity").show();
         wwd.redraw();
     }
@@ -186,4 +215,4 @@ define(function () {
         geojson.layerManager.synchronizeLayerList();
     };
     return UserInterface
-})
+});
