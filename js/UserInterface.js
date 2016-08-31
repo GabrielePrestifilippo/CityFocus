@@ -142,7 +142,7 @@ define(function () {
 
         $("#expandRaster").show();
         $("#expandLayer").show();
-       // $("#opacity").show();
+       //$("#opacity").show();
         wwd.redraw();
     };
 
@@ -166,8 +166,6 @@ define(function () {
         }
     };
 
-
-
     UserInterface.prototype.addSingleRaster = function (res, name) {
 
         var self = this;
@@ -189,6 +187,7 @@ define(function () {
             polygonLayer.raster = true;
             polygonLayer.enabled = false;
             wwd.addLayer(polygonLayer);
+            self.geojson.layers.push(polygonLayer);
             layerManager.synchronizeLayerList();
         }
         polygonGeoJSON.load(callback, shapeConfigurationCallback, polygonLayer);

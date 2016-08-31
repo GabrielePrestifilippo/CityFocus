@@ -2,7 +2,7 @@ var wwd;
 var nav;
 var accelerateRender=false;
 var layerManager;
-define(['./LayerManager', 'src/WorldWind'],
+define(['./LayerManager'],
     function (LayerManager) {
 
         var worldwind = function (results) {

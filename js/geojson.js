@@ -11,8 +11,11 @@ define(function () {
         var self = this;
         var resourcesUrl = "geojson/";
 
-
-        var polygonLayer = new WorldWind.RenderableLayer(label + " vector");
+        if (label == "Neighborhoods") {
+            var polygonLayer = new WorldWind.RenderableLayer(label);
+        } else {
+            var polygonLayer = new WorldWind.RenderableLayer(label + " Criteria map");
+        }
         var polygonGeoJSON = new WorldWind.GeoJSONParser(resourcesUrl + name + ".geojson");
 
         var placemarkAttributes = new WorldWind.PlacemarkAttributes(null);
@@ -30,28 +33,14 @@ define(function () {
             else if (geometry.isLineStringType() || geometry.isMultiLineStringType()) {
                 configuration.attributes = new WorldWind.ShapeAttributes(null);
                 configuration.attributes.drawOutline = true;
-
-                configuration.attributes.outlineColor = new WorldWind.Color(
-                    0.5 * configuration.attributes.interiorColor.red,
-                    0.5 * configuration.attributes.interiorColor.green,
-                    0.5 * configuration.attributes.interiorColor.blue,
-                    1.0);
-                configuration.attributes.outlineWidth = 0.55;
+                configuration.attributes.outlineWidth = 0.50;
             }
             else if (geometry.isPolygonType() || geometry.isMultiPolygonType()) {
                 configuration.attributes = new WorldWind.ShapeAttributes(null);
-                configuration.attributes.outlineWidth = 0.4;
-                configuration.attributes.interiorColor = new WorldWind.Color(
-                    1 + 0.5,
-                    0.375 + 0.5,
-                    0.375 + 0.5,
-                    0.0);
+                configuration.attributes.outlineWidth = 0.45;
+                configuration.attributes.interiorColor = new WorldWind.Color(0,0,0,0);
 
-                configuration.attributes.outlineColor = new WorldWind.Color(
-                    0.5 * configuration.attributes.interiorColor.red,
-                    0.5 * configuration.attributes.interiorColor.green,
-                    0.5 * configuration.attributes.interiorColor.blue,
-                    0.4);
+                configuration.attributes.outlineColor = new WorldWind.Color(0,0,0,0.8);
             }
 
             return configuration;
@@ -112,7 +101,7 @@ define(function () {
         polygonLayer.enabled = false;
         polygonLayer.pickEnabled = false;
         polygonLayer.opacity = 0.5;
-        polygonLayer.raster=true;
+        polygonLayer.raster = true;
         this.grid = polygonLayer;
         wwd.addLayer(polygonLayer);
         // this.layerManager.synchronizeLayerList();
@@ -144,7 +133,7 @@ define(function () {
     GeoJson.prototype.eyeDistance = function (layer) {
         if (layer.renderables) {
             wwd.addLayer(layer);
-            if (layer.displayName !== "Area vector") {
+            if (layer.displayName !== "Neighborhoods") {
                 this.layers.push(layer);
             }
             for (var x in layer.renderables) {
@@ -161,6 +150,7 @@ define(function () {
         for (var x = 0; x <= length; x++) {
             wwd.removeLayer(this.layers[x]);
         }
+
 
         this.layers = [];
 

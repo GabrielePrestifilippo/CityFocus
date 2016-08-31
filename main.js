@@ -36,7 +36,7 @@ require(['js/worldwind', 'js/UserInterface', 'js/geojson'],
                         var callback= function(){
                             geojson.milano.call(geojson);
                         }
-                        geojson.add("NIL_Zone", "Area", 1, callback);
+                        geojson.add("Neighborhoods", "Neighborhoods", 1, callback);
 
                     }
 
