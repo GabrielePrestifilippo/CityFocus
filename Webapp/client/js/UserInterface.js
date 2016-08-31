@@ -142,6 +142,8 @@ define(function () {
 
         $("#expandRaster").show();
         $("#expandLayer").show();
+        $("#selectedCriteriaDiv").show();
+
        //$("#opacity").show();
         wwd.redraw();
     };
