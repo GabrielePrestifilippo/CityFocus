@@ -1,0 +1,403 @@
+<html>
+
+<head>
+
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/bootstrap-slider.js"></script>
+    <script src="worldwindlib.js" type="text/javascript"></script>
+    <script>var application = true;</script>
+
+
+
+</head>
+
+<body>
+<script data-main="main" src="js/require.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="css/bootstrap.css">
+<!-- Latest compiled JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/progress.css">
+<link rel="stylesheet" href="css/jquery-ui.min.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/bootstrap-slider.min.css">
+<div id="header">
+
+</div>
+<div class="container" id="c_one_home_app">
+
+
+    <div class="container-fluid">
+        <div class="row bigText">
+
+            <img class="mygeoss" src="mygeoss.png" height="200">
+            <div class="inside">
+                <p> Hi there! <br>
+                    Rate the topic below to find the best place for you to live in!
+                </p>
+            </div>
+            <img class="eu" src="eu.png" width="200">
+
+        </div>
+    </div>
+
+
+</div>
+<div class="container" id="c_two">
+
+    <div class="bigText" id="criteria_name">
+        Criteria for Milan:
+    </div>
+
+
+    <div id="criteria">
+        <div class="row">
+
+
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a title="This means...something" data-toggle="collapse"
+                               href="#collapse1">Near to Services</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div class="name_slider" id="ATMs">
+                                <label>ATMs</label>
+                                <div class="slider" id="atms200"></div>
+                            </div>
+                            <div class="name_slider" id="Banks">
+                                <label>Banks</label>
+                                <div class="slider" id="banks200"></div>
+                            </div>
+                            <div class="name_slider" id="Coffe_Shop">
+                                <label>Coffe Shop</label>
+                                <div class="slider" id="cafe200"></div>
+                            </div>
+                            <div class="name_slider" id="Hospitals">
+                                <label>Hospitals</label>
+                                <div class="slider" id="hospitals200"></div>
+                            </div>
+                            <div class="name_slider" id="Pharmacies">
+                                <label>Pharmacies</label>
+                                <div class="slider" id="pharmacies200"></div>
+                            </div>
+                            <div class="name_slider" id="Police_station">
+                                <label>Police Station</label>
+                                <div class="slider" id="police200"></div>
+                            </div>
+                            <div class="name_slider" id="Post_office">
+                                <label>Post Office</label>
+                                <div class="slider" id="post200"></div>
+                            </div>
+                            <div class="name_slider" id="Supermarkets">
+                                <label>Supermarkets</label>
+                                <div class="slider" id="supermarkets200"></div>
+                            </div>
+                            <div class="name_slider" id="Veterinary clinics">
+                                <label>Veterinary Clinics</label>
+                                <div class="slider" id="veterinary200"></div>
+                            </div>
+                            <div class="name_slider" id="Wifi">
+                                <label>Wifi</label>
+                                <div class="slider" id="wifi200"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a title="This means...something else" data-toggle="collapse" href="#collapse2">Near to
+                                Nature</a>
+                        </h4>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div class="name_slider" id="Parks">
+                                <label>Parks</label>
+                                <div class="slider" id="parchi200"></div>
+                            </div>
+                            <div class="name_slider" id="Dog_parks">
+                                <label>Dog Parks</label>
+                                <div class="slider" id="areacani200"></div>
+                            </div>
+                            <div class="name_slider" id="Green_areas">
+                                <label>Green areas</label>
+                                <div class="slider" id="areeverdi200"></div>
+                            </div>
+                            <div class="name_slider" id="Water">
+                                <label>Natural Water</label>
+                                <div class="slider" id="water200"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" title="This means...something" href="#collapse3">Near to
+                                Education</a>
+                        </h4>
+                    </div>
+                    <div id="collapse3" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div class="name_slider" id="Universities">
+                                <label>Universities</label>
+                                <div class="slider" id="universities200"></div>
+                            </div>
+                            <div class="name_slider" id="High_schools">
+                                <label>High Schools</label>
+                                <div class="slider" id="highs200"></div>
+                            </div>
+                            <div class="name_slider" id="Primary_schools">
+                                <label>Primary schools</label>
+                                <div class="slider" id="primarys200"></div>
+                            </div>
+                            <div class="name_slider" id="Secondary_schools">
+                                <label>Secondary schools</label>
+                                <div class="slider" id="secondarys200"></div>
+                            </div>
+                            <div class="name_slider" id="Kindergarten">
+                                <label>Kindergarten</label>
+                                <div class="slider" id="kindergarten200"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" title="This means...something" href="#collapse4">Near to
+                                Transportation</a>
+                        </h4>
+                    </div>
+                    <div id="collapse4" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div class="name_slider" id="Train_metro">
+                                <label>Train and metro stations(Problem)</label>
+                                <div class="slider" id="tms200"></div>
+                            </div>
+                            <div class="name_slider" id="Bus_stops">
+                                <label>Bus Stops</label>
+                                <div class="slider" id="busstops200"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a title="This means...something" data-toggle="collapse" href="#collapse5">Environmental
+                                conditions</a>
+                        </h4>
+                    </div>
+                    <div id="collapse5" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div class="name_slider" id="Air_quality">
+                                <label>Air Quality(Problem)</label>
+                                <div class="slider" id="eea200"></div>
+                            </div>
+                            <div class="name_slider" id="Temperature">
+                                <label>Temperature(missing)</label>
+                                <div class="slider" id="pending"></div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a title="This means...something" data-toggle="collapse" href="#collapse6">Landuse Type</a>
+                        </h4>
+                    </div>
+                    <div id="collapse6" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div class="name_slider" id="Industrial_units">
+                                <label>Industrial or commercial units</label>
+                                <div class="slider" id="pending"></div>
+                            </div>
+                            <div class="name_slider" id="Continuous_id">
+                                <label>Continuous urban fabric</label>
+                                <div class="slider" id="pending"></div>
+                            </div>
+                            <div class="name_slider" id="Discontinuous_id">
+                                <label>Discontinuous urban fabric</label>
+                                <div class="slider" id="pending"></div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a title="This means...something" data-toggle="collapse" href="#collapse7">Population
+                                Density</a>
+                        </h4>
+                    </div>
+                    <div id="collapse7" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div class="name_slider" id="low_Population_density">
+                                <label>Low Population density</label>
+                                <div class="slider" id="pending"></div>
+                            </div>
+                            <div class="name_slider" id="medium_Population_density">
+                                <label>Medium Population density</label>
+                                <div class="slider" id="pending"></div>
+                            </div>
+                            <div class="name_slider" id="high_Population_density">
+                                <label>High Population density</label>
+                                <div class="slider" id="pending"></div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="bigCentral">
+            <button id="submitQuery" type="button" class="btn btn-warning btn-lg">Find Your Place!</button>
+        </div>
+    </div>
+
+</div>
+<div class="container" id="c_three">
+
+    <div class="col-sm-3">
+        <br>
+        <!--
+        <h4>View Mode </h4>
+        <div class="dropdown" id="projectionDropdown">
+        </div>
+
+        <br>
+        -->
+        <button id="expandRaster" class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown">
+            Locations of Interest<span
+                class="caret"></span></button>
+        <div data-open="false" class="list-group" id="rasterList">
+            <br>
+        </div>
+        <br>
+
+
+        <button id="expandLayer" class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown">
+            Criteria Map<span
+                class="caret"></span></button>
+        <div data-open="false" class="list-group" id="layerList">
+            <br>
+        </div>
+
+
+        <br>
+        <div id="opacity">
+            <h4>Result Opacity</h4>
+            <div id="opacity_slider"></div>
+        </div>
+        <br>
+        <div id="selectedCriteriaDiv">
+            <h4>Selected Criteria</h4>
+            <div id="criteria_selected">
+            </div>
+        </div>
+        <br>
+    </div>
+    <div class="col-sm-9" id="globe">
+        <div id="legend">
+            <span>Legend</span><br>
+            <div class="ls">0-10%</div>
+            <div class="sq sq1"></div>
+            <div class="ls">10-20%</div>
+            <div class="sq sq2"></div>
+            <div class="ls">20-30%</div>
+            <div class="sq sq3"></div>
+            <div class="ls">30-40%</div>
+            <div class="sq sq4"></div>
+            <div class="ls">40-50%</div>
+            <div class="sq sq5"></div>
+            <div class="ls">50-60%</div>
+            <div class="sq sq6"></div>
+            <div class="ls">60-70%</div>
+            <div class="sq sq7"></div>
+            <div class="ls">70-80%</div>
+            <div class="sq sq8"></div>
+            <div class="ls">80-90%</div>
+            <div class="sq sq9"></div>
+            <div class="ls">90-100%</div>
+            <div class="sq sq10"></div>
+        </div>
+        <canvas id="canvasOne" width="1000" height="1000" style="width: 100%; height: 65%">
+            Your browser does not support HTML5 Canvas.
+        </canvas>
+    </div>
+
+</div>
+
+<div class="container" id="wcpsimage">
+
+</div>
+
+<!--<div class="container" id="c_four">
+
+    <h2>Best Places for you:</h2><br>
+    <div id="best_result">
+        <div class="name_result">Porta Vercellina</div>
+        <div id="r1" class="result_score"></div>
+
+        <div class="name_result">Porta Romana</div>
+        <div id="r2" class="result_score"></div>
+
+    </div>
+</div>-->
+<div class="container" id="footer">
+
+</div>
+
+
+</div>
+
+</body>
+</html>
