@@ -486,3 +486,11 @@ div#legend {
 #selectedCriteriaDiv{
     display:none;
 }
+#headerLogos{
+     float: right;
+     padding-right:5%;
+ }
+#headerLogos img{
+   max-height: 120px;
+    padding-right:20px;
+}
