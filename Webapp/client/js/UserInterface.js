@@ -5,6 +5,7 @@ define(function () {
     var UserInterface = function (layerManager, geojson) {
         this.layerManager = layerManager;
         this.geojson = geojson;
+        this.rasters=[];
         this.map = {};
     };
 
@@ -61,7 +62,21 @@ define(function () {
         });
 
 
+        $("#reset").click(function () {
+            $("#reset").hide();
+            self.geojson.clean();
+            var length = self.rasters.length;
+            for (var x = 0; x <= length; x++) {
+                wwd.removeLayer(self.rasters[x]);
+            }
+            $("#criteria_selected").html("");
+            wwd.redraw();
+            layerManager.synchronizeLayerList();
+            wwd.layers[3].enabled=false;
+            });
+
         $("#submitQuery").click(function () {
+            $("#reset").show();
             var count = 0;
             var idSlider = [];
             self.geojson.clean();
@@ -184,6 +199,7 @@ define(function () {
             }
             return configuration;
         };
+        self.rasters.push(polygonLayer);
         var callback = function (polygonLayer) {
             self.convertToshape(polygonLayer, res);
             polygonLayer.raster = true;

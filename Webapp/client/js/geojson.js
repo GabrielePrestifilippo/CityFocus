@@ -150,8 +150,6 @@ define(function () {
         for (var x = 0; x <= length; x++) {
             wwd.removeLayer(this.layers[x]);
         }
-
-
         this.layers = [];
 
     };
