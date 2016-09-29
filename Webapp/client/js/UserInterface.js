@@ -69,6 +69,9 @@ define(function () {
             for (var x = 0; x <= length; x++) {
                 wwd.removeLayer(self.rasters[x]);
             }
+            for (var x = 0; x <wwd.layers[3].renderables.length; x++) {
+                wwd.layers[3].renderables[x].enabled=false;
+            }
             $("#criteria_selected").html("");
             wwd.redraw();
             layerManager.synchronizeLayerList();
@@ -83,7 +86,9 @@ define(function () {
             var count = 0;
             var idSlider = [];
             self.geojson.clean();
-
+            for (var x = 0; x <wwd.layers[3].renderables.length; x++) {
+                wwd.layers[3].renderables[x].enabled=true;
+            }
             $(".name_slider div").each(function () {
                 if (this.id) {
                     idSlider.push(this.id);
