@@ -76,6 +76,9 @@ define(function () {
             });
 
         $("#submitQuery").click(function () {
+            $('html, body').animate({
+                scrollTop: $('#footer').offset().top
+            }, 'slow');
             $("#reset").show();
             var count = 0;
             var idSlider = [];
