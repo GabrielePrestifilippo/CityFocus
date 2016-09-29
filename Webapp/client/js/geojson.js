@@ -14,7 +14,7 @@ define(function () {
         if (label == "Neighborhoods") {
             var polygonLayer = new WorldWind.RenderableLayer(label);
         } else {
-            var polygonLayer = new WorldWind.RenderableLayer(label + " Criterion map");
+            var polygonLayer = new WorldWind.RenderableLayer(label + " ");
         }
         var polygonGeoJSON = new WorldWind.GeoJSONParser(resourcesUrl + name + ".geojson");
 

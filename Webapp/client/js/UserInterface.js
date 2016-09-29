@@ -18,7 +18,6 @@ define(function () {
             ticks: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
             ticks_snap_bounds: 10,
             value: 0
-
         });
 
         var opacitySlider = $("#opacity_slider").slider({
@@ -63,6 +62,7 @@ define(function () {
 
 
         $("#reset").click(function () {
+            $(".slider").slider("setValue",0);
             $("#reset").hide();
             self.geojson.clean();
             var length = self.rasters.length;
@@ -190,7 +190,7 @@ define(function () {
 
         var self = this;
         var label = $("#" + name).parent().find("label").text();
-        var polygonLayer = new WorldWind.RenderableLayer(label);
+        var polygonLayer = new WorldWind.RenderableLayer(label + " Criterion Map");
 
         var polygonGeoJSON = new WorldWind.GeoJSONParser(geojson.JSONgrid);
         var shapeConfigurationCallback = function (geometry, properties) {
