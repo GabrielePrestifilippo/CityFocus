@@ -5,3 +5,6 @@ City Focus is a web-based interactive 2D and 3D GIS application to find the best
 Authors: Carolina Arias Muñoz, Simone Corti, Monia Elisa Molinari, Daniele Oxoli, Gabriele Prestifilippo Department of Civil and Environmental Engineering, Politecnico di Milano Como Campus, Como, Lombardy, Italy
 
 Check: City Focus: A web-based interactive 2D and 3D GIS application to find the best place in a city, using open data and open source software https://peerj.com/preprints/2232/
+
+
+_City Focus is a free software; you can redistribute it and/or modify it under the terms of the_ EU Public License (EUPL) https://joinup.ec.europa.eu/community/eupl/og_page/eupl
